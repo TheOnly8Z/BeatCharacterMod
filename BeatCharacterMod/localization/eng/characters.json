@@ -1,0 +1,16 @@
+{
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.aromaPrinciple": "Lore",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.banter.alive.endTurnPing": "Co-op hurry up end turn ping message",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.banter.dead.endTurnPing": "...",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.cardsModifierDescription": "__ cards will now appear in rewards and shops.",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.cardsModifierTitle": "__ Cards",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.description": "Character Selection\nScreen Description",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.eventDeathPrevention": "Co-op survival line",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.goldMonologue": "Line spoken when obtaining a large amount of gold",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.possessiveAdjective": "her",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.pronounObject": "her",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.pronounPossessive": "hers",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.pronounSubject": "she",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.title": "The BeatCharacterMod",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.titleObject": "The BeatCharacterMod"
+}
