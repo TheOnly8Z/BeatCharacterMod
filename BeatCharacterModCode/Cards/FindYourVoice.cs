@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BeatCharacterMod.BeatCharacterModCode.Cards;
+using BeatCharacterMod.BeatCharacterModCode.Singletons;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,7 +21,7 @@ public class FindYourVoice() : BeatCharacterModCard(1,
         new ExtraDamageVar(1M),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(((Func<CardModel, Creature, Decimal>) ((card, _)
-                => 0))!)
+                => MelodicFlowTracker.GetTempo(card.Owner)))!)
     ];
 
     protected override async Task OnPlay(
