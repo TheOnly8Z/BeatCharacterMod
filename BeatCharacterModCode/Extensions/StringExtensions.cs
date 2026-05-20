@@ -68,4 +68,10 @@ public static class StringExtensions
     {
         return Path.Join(MainFile.ResPath, "images", "charui", path);
     }
+
+    public static string CharacterSelectScreenPath(this string path)
+    {
+        return Path.Join(MainFile.ResPath, "scenes", "screens", "char_select", path);
+
+    }
 }

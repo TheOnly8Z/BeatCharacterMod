@@ -60,6 +60,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="BeatCharacterMod\animations\character_select\beat\" />
         <Folder Include="BeatCharacterMod\images\card_portraits\big\"/>
         <Folder Include="BeatCharacterMod\images\powers\big\"/>
         <Folder Include="BeatCharacterMod\images\relics\big\"/>
