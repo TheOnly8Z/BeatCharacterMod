@@ -30,5 +30,5 @@ public class LoseYourWay() : BeatCharacterModCard(2,
         await MelodicFlowTracker.SetMelodicFlowState(Owner, MelodicFlowState.Silence);
     }
 
-    protected override void OnUpgrade() => this.EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1M);
 }

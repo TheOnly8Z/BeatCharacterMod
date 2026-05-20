@@ -13,7 +13,7 @@ public class BeatWalkmanRelic() : BeatCharacterModRelic
     public override RelicRarity Rarity =>
         RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new IntVar("Tempo", 3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new IntVar("Tempo", 1)];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         MelodicFlowHoverTip.GetStaticTip("MELODIC_FLOW"), MelodicFlowHoverTip.TempoStatic()];
@@ -23,6 +23,6 @@ public class BeatWalkmanRelic() : BeatCharacterModRelic
         if (side != Owner.Creature.Side || combatState.RoundNumber > 1)
             return;
         
-        await MelodicFlowTracker.GainTempo(Owner, 3M);
+        await MelodicFlowTracker.GainTempo(Owner, DynamicVars["Tempo"].BaseValue);
     }
 }

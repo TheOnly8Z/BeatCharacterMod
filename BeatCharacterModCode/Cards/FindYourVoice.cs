@@ -19,7 +19,7 @@ public class FindYourVoice() : BeatCharacterModCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(6M),
-        new ExtraDamageVar(1M),
+        new ExtraDamageVar(2M),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(((Func<CardModel, Creature, Decimal>) ((card, _)
                 => MelodicFlowTracker.GetTempo(card.Owner)))!)

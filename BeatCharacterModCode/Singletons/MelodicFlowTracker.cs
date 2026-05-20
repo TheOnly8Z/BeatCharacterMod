@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Singletons;
 
@@ -64,7 +65,7 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
 
         // Maybe trigger "On tempo gain" hooks here
         
-        Tempo[player.PlayerCombatState] += amount;
+        Tempo[player.PlayerCombatState] = Math.Min(999M, Tempo[player.PlayerCombatState] + amount);
         
         MainFile.Logger.Info( player.Character + " gained " + amount + " tempo, now has " + Tempo[player.PlayerCombatState]);
         
@@ -84,7 +85,7 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
 
         // Maybe trigger "On tempo loss" hooks here
         
-        Tempo[player.PlayerCombatState] -= amount;
+        Tempo[player.PlayerCombatState] = Math.Max(0M, Tempo[player.PlayerCombatState] - amount);
         
         MainFile.Logger.Info( player.Character + " lost " + amount + " tempo, now has " + Tempo[player.PlayerCombatState]);
 
@@ -136,6 +137,21 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         return GetMelodicFlowState(player) is MelodicFlowState.Resonance or MelodicFlowState.Silence;
     }
     
+    public override bool TryModifyEnergyCostInCombatLate(
+        CardModel card,
+        Decimal originalCost,
+        out Decimal modifiedCost)
+    {
+        Player player = card.Owner;
+        modifiedCost = originalCost;
+
+        if (GetMelodicFlowState(player) is not MelodicFlowState.Silence || originalCost < 1M)
+            return false;
+        
+        modifiedCost = originalCost - 1M;
+        return true;
+    }
+    
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         Player player = cardPlay.Card.Owner;
@@ -151,39 +167,68 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
             return Task.CompletedTask;
         }
         
+        MelodicFlowState melodicFlowState = GetMelodicFlowState(player);
+
         // If player isn't in Melodic Flow, isn't Beat, and did not play one of Beat's cards, nothing happens 
-        if (GetMelodicFlowState(player) == MelodicFlowState.None
+        if (melodicFlowState is MelodicFlowState.None
             && player.Character is not Character.BeatCharacterMod
             && cardPlay.Card.Pool is not BeatCharacterModCardPool)
         {
             return Task.CompletedTask;
         }
         
-        MelodicFlowState melodicFlowState = GetMelodicFlowState(player);
         Decimal tempo = GetTempo(player);
-        
-        // If in Silence stance and ran out of Tempo, exit stance into what would be the proper stance
-        // Making the assumption that entering Silence stance requires at least 1 card played this combat
-        bool shouldExitSilence = melodicFlowState is MelodicFlowState.Silence && tempo <= 0M;
+
+        // Spend Tempo when in Silence state and playing a card that costed Energy
+        // Silence state is not changed until after card played (so that Rhythm/Resonance effects trigger as expected) 
+        if (melodicFlowState is MelodicFlowState.Silence && !cardPlay.Card.EnergyCost.CostsX && cardPlay.Card.EnergyCost.Canonical > 0M)
+        {
+            LoseTempo(player, 2M);
+        }
         
         if (lastPlayedCardType != cardType)
         {
             if (melodicFlowState == MelodicFlowState.Rhythm)
             {
                 GainTempo(player);
-            } else if (shouldExitSilence || melodicFlowState is MelodicFlowState.None or MelodicFlowState.Resonance)
+            } else if (melodicFlowState is MelodicFlowState.None or MelodicFlowState.Resonance)
             {
                 SetMelodicFlowState(player, MelodicFlowState.Rhythm);
             }
         }
         else
         {
-            if (shouldExitSilence || melodicFlowState is MelodicFlowState.None or MelodicFlowState.Rhythm)
+            if ( melodicFlowState is MelodicFlowState.None or MelodicFlowState.Rhythm)
             {
                 SetMelodicFlowState(player, MelodicFlowState.Resonance);
             }
         }
         
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        Player player = cardPlay.Card.Owner;
+
+        MelodicFlowState melodicFlowState = GetMelodicFlowState(player);
+        Decimal tempo = GetTempo(player);
+
+        if (melodicFlowState is MelodicFlowState.Silence && tempo <= 0M)
+        {
+            CardType lastPlayedCardType = GetLastPlayedCardType(player, 1);
+            CardType cardType = cardPlay.Card.Type;
+            
+            if (lastPlayedCardType != cardType)
+            {
+                SetMelodicFlowState(player, MelodicFlowState.Rhythm);
+            }
+            else
+            {
+                SetMelodicFlowState(player, MelodicFlowState.Resonance);
+            }
+        }
+
         return Task.CompletedTask;
     }
 }

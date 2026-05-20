@@ -6,7 +6,7 @@ namespace BeatCharacterMod.BeatCharacterModCode.Formatters;
 
 public class TempoIconsFormatter : IFormatter
 {
-    private const string tempoIconSprite = "[img]res://images/packed/sprite_fonts/tempo_icon.png[/img]";
+    private const string tempoIconSprite = "[img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img]";
 
     public string Name
     {
