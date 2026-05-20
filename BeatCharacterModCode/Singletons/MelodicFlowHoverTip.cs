@@ -1,10 +1,12 @@
 ﻿using BaseLib.Abstracts;
 using BeatCharacterMod.BeatCharacterModCode.Enums;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Singletons;
 
@@ -24,11 +26,18 @@ public class MelodicFlowHoverTip() : CustomSingletonModel(false, false)
         return new HoverTip(title, description);
     }
 
-    public static IHoverTip FromMelodicFlow(MelodicFlowState state)
+    public static IHoverTip FromMelodicFlow(MelodicFlowState state, CharacterModel character, params DynamicVar[] vars)
     {
         string str = StringHelper.Slugify(state.ToString());
-        return new HoverTip(L10NStatic("MELODIC_FLOW_" + str + ".title")
-            , L10NStatic("MELODIC_FLOW_" + str + ".description"));
+        LocString title = L10NStatic("MELODIC_FLOW_" + str + ".title");
+        LocString description = L10NStatic("MELODIC_FLOW_" + str + ".description");
+        description.Add("energyPrefix", EnergyIconHelper.GetPrefix(character));
+        foreach (DynamicVar var in vars)
+        {
+            title.Add(var);
+            description.Add(var);
+        }
+        return new HoverTip(title, description);
     }
 
     public static IHoverTip TempoStatic()

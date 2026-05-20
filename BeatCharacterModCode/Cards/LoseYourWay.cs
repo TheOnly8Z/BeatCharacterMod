@@ -18,7 +18,7 @@ public class LoseYourWay() : BeatCharacterModCard(2,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [MelodicFlowHoverTip.FromMelodicFlow(MelodicFlowState.Silence)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [MelodicFlowHoverTip.FromMelodicFlow(MelodicFlowState.Silence, Owner.Character)];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
