@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils.NodeFactories;
+using BeatCharacterMod.BeatCharacterModCode.Cards;
 using BeatCharacterMod.BeatCharacterModCode.Extensions;
 using BeatCharacterMod.BeatCharacterModCode.Relics;
 using Godot;
@@ -15,7 +16,7 @@ public class BeatCharacterMod : PlaceholderCharacterModel
 {
     public const string CharacterId = "BeatCharacterMod";
 
-    public static readonly Color Color = new("ffffff");
+    public static readonly Color Color = new("ff97b0");
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Feminine;
@@ -23,16 +24,16 @@ public class BeatCharacterMod : PlaceholderCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<StrikeIronclad>(),
-        ModelDb.Card<StrikeIronclad>(),
-        ModelDb.Card<StrikeIronclad>(),
-        ModelDb.Card<StrikeIronclad>(),
-        ModelDb.Card<StrikeIronclad>(),
-        ModelDb.Card<DefendIronclad>(),
-        ModelDb.Card<DefendIronclad>(),
-        ModelDb.Card<DefendIronclad>(),
-        ModelDb.Card<DefendIronclad>(),
-        ModelDb.Card<DefendIronclad>()
+        ModelDb.Card<StrikeBeat>(),
+        ModelDb.Card<StrikeBeat>(),
+        ModelDb.Card<StrikeBeat>(),
+        ModelDb.Card<StrikeBeat>(),
+        ModelDb.Card<DefendBeat>(),
+        ModelDb.Card<DefendBeat>(),
+        ModelDb.Card<DefendBeat>(),
+        ModelDb.Card<DefendBeat>(),
+        ModelDb.Card<LoseYourWay>(),
+        ModelDb.Card<FindYourVoice>()
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>

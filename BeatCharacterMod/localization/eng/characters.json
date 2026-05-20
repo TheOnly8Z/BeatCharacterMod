@@ -1,16 +1,16 @@
 {
-  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.aromaPrinciple": "[sine][hot_pink]... Seven years different ... Seven years better ...[/hot_pink][/sine]",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.aromaPrinciple": "[sine][pink]... Seven years different ... Seven years better ...[/pink][/sine]",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.banter.alive.endTurnPing": "Just waiting, and waiting...",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.banter.dead.endTurnPing": "...",
-  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.cardsModifierDescription": "Unbeatable cards will now appear in rewards and shops.",
-  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.cardsModifierTitle": "Unbeatable Cards",
-  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.description": "A vocalist involuntarily traversing the multiverse.\nFights using the Rhythm and her Silence form.",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.cardsModifierDescription": "Beat's cards will now appear in rewards and shops.",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.cardsModifierTitle": "Beat's Cards",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.description": "A vocalist traversing the multiverse involuntarily.\nUses Melodic Flow to unleash rhythmic beatdowns.",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.eventDeathPrevention": "The band needs me...",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.goldMonologue": "[sine]I've never had this much money before...[/sine]",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.possessiveAdjective": "her",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.pronounObject": "her",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.pronounPossessive": "hers",
   "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.pronounSubject": "she",
-  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.title": "The Unbeatable",
-  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.titleObject": "The Unbeatable"
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.title": "Beat",
+  "BEATCHARACTERMOD-BEAT_CHARACTER_MOD.titleObject": "Beat"
 }
