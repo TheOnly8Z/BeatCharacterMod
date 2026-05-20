@@ -59,10 +59,10 @@ public class BeatCharacterMod : PlaceholderCharacterModel
         }
     }
 
-    public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
+    public override string CustomIconTexturePath => "character_icon_beat.png".CharacterUiPath();
     public override string CustomCharacterSelectIconPath => "char_select_beat.png".CharacterUiPath();
     public override string CustomCharacterSelectLockedIconPath => "char_select_beat_locked.png".CharacterUiPath();
-    public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
+    public override string CustomMapMarkerPath => "map_marker_beat.png".CharacterUiPath();
     public override string CustomCharacterSelectBg => "char_select_bg_beat.tscn".CharacterSelectScreenPath();
 
 }
