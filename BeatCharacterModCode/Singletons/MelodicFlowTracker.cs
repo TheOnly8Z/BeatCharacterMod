@@ -31,6 +31,12 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         return player.PlayerCombatState == null ? MelodicFlowState.None : MelodicFlow[player.PlayerCombatState];
     }
     
+    /// <summary>
+    /// Sets a player's Melodic Flow state.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="state">The state.</param>
+    /// <returns>The task.</returns>
     public static Task SetMelodicFlowState(Player player, MelodicFlowState state)
     {
         if (CombatManager.Instance.IsEnding || player.PlayerCombatState == null)
@@ -45,6 +51,12 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         return Task.CompletedTask;
     }
 
+    /// <summary>
+    /// Gives some Tempo to the player.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="amount">Amount to give.</param>
+    /// <returns>The task.</returns>
     public static Task GainTempo(Player player, Decimal amount = 1M)
     {
         if (amount <= 0M || CombatManager.Instance.IsEnding || player.PlayerCombatState == null)
@@ -59,6 +71,12 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         return Task.CompletedTask;
     }
     
+    /// <summary>
+    /// Deduct some Tempo from the player.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="amount">Amount to deduct.</param>
+    /// <returns>The task.</returns>
     public static Task LoseTempo(Player player, Decimal amount = 1M)
     {
         if (amount <= 0M || CombatManager.Instance.IsEnding || player.PlayerCombatState == null)
@@ -73,7 +91,13 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         return Task.CompletedTask;
     }
 
-    public static CardType GetLastPlayedCardType(Player player, int skipLast = 1)
+    /// <summary>
+    /// Get the CardType of the most recently played card by a player.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="skipLast">Skip X amount of most recent entries from the card history.</param>
+    /// <returns>CardType of the last played card.</returns>
+    public static CardType GetLastPlayedCardType(Player player, int skipLast = 0)
     {
         if (CombatManager.Instance.History.Entries
             .OfType<CardPlayFinishedEntry>()
@@ -91,12 +115,32 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
             return CardType.None;
         }
     }
+
+    /// <summary>
+    /// Returns whether Rhythm keywords should trigger for a player (Rhythm or Silence state).
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <returns>True if the keyword is active.</returns>
+    public static bool IsInRhythmState(Player player)
+    {
+        return GetMelodicFlowState(player) is MelodicFlowState.Rhythm or MelodicFlowState.Silence;
+    }
     
-    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    /// <summary>
+    /// Returns whether Resonance keywords should trigger for a player (Resonance or Silence state).
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <returns>True if the keyword is active.</returns>
+    public static bool IsInResonanceState(Player player)
+    {
+        return GetMelodicFlowState(player) is MelodicFlowState.Resonance or MelodicFlowState.Silence;
+    }
+    
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         Player player = cardPlay.Card.Owner;
         
-        CardType lastPlayedCardType = GetLastPlayedCardType(player);
+        CardType lastPlayedCardType = GetLastPlayedCardType(player, 0);
         CardType cardType = cardPlay.Card.Type;
 
         MainFile.Logger.Info( player.Character + " last played card type " + lastPlayedCardType + ", current played card type " + cardType);

@@ -1,11 +1,14 @@
-﻿using BeatCharacterMod.BeatCharacterModCode.Cards;
+﻿using BaseLib.Patches.Localization;
+using BeatCharacterMod.BeatCharacterModCode.Cards;
 using BeatCharacterMod.BeatCharacterModCode.Enums;
 using BeatCharacterMod.BeatCharacterModCode.Singletons;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using StaticHoverTip = MegaCrit.Sts2.Core.HoverTips.StaticHoverTip;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Cards;
 
@@ -14,6 +17,8 @@ public class LoseYourWay() : BeatCharacterModCard(2,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [MelodicFlowHoverTip.FromMelodicFlow(MelodicFlowState.Silence)];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

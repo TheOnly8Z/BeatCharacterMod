@@ -3,7 +3,7 @@
   "BEATCHARACTERMOD-STRIKE_BEAT.title": "Strike",
   "BEATCHARACTERMOD-DEFEND_BEAT.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "BEATCHARACTERMOD-DEFEND_BEAT.title": "Defend",
-  "BEATCHARACTERMOD-FIND_YOUR_VOICE.description": "Deal {CalculatedDamage:diff()} damage. Deals additional damage equal to the amount of Tempo you have.",
+  "BEATCHARACTERMOD-FIND_YOUR_VOICE.description": "Deal {CalculatedDamage:diff()} damage. Deals additional damage equal to the amount of [img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img] you have.",
   "BEATCHARACTERMOD-FIND_YOUR_VOICE.title": "Find Your Voice",
   "BEATCHARACTERMOD-LOSE_YOUR_WAY.description": "Draw 1 card. Enter [gold]Silence[/gold].",
   "BEATCHARACTERMOD-LOSE_YOUR_WAY.title": "Lose Your Way"

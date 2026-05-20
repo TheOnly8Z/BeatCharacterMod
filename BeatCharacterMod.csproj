@@ -38,6 +38,7 @@
         <!-- Generates a .pck file when building if only using simple assets. May not work on all setups. Uncomment to test. -->
         <!-- <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" /> -->
         <AdditionalFiles Include="BeatCharacterMod/localization/**/*.json"/> <!-- Used by analyzer -->
+        <PackageReference Include="SmartFormat.NET" Version="3.6.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -60,8 +61,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="BeatCharacterModCode\HoverTips\" />
         <Folder Include="BeatCharacterMod\animations\character_select\beat\" />
         <Folder Include="BeatCharacterMod\images\card_portraits\big\"/>
+        <Folder Include="BeatCharacterMod\images\packed\" />
         <Folder Include="BeatCharacterMod\images\powers\big\"/>
         <Folder Include="BeatCharacterMod\images\relics\big\"/>
     </ItemGroup>
