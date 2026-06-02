@@ -18,7 +18,7 @@ public class LoseYourWay() : BeatCharacterModCard(2,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [MelodicFlowHoverTip.FromMelodicFlow(MelodicFlowState.Silence, Owner.Character)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [MelodicFlowHoverTip.FromMelodicFlow(MelodicState.Silence, Owner.Character)];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -27,7 +27,7 @@ public class LoseYourWay() : BeatCharacterModCard(2,
         LoseYourWay cardSource = this;
         IEnumerable<CardModel> cardModels = await CardPileCmd.Draw(choiceContext, cardSource.DynamicVars.Cards.BaseValue, cardSource.Owner);
 
-        await MelodicFlowTracker.SetMelodicFlowState(Owner, MelodicFlowState.Silence);
+        await MelodicFlowTracker.SetMelodicFlowState(Owner, MelodicState.Silence);
     }
 
     protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1M);

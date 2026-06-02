@@ -3,14 +3,41 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using BeatCharacterMod.BeatCharacterModCode.Character;
 using BeatCharacterMod.BeatCharacterModCode.Extensions;
+using BeatCharacterMod.BeatCharacterModCode.Formatters;
+using BeatCharacterMod.BeatCharacterModCode.Interfaces;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Cards;
 
 [Pool(typeof(BeatCharacterModCardPool))]
 public abstract class BeatCharacterModCard(int cost, CardType type, CardRarity rarity, TargetType target) :
-    CustomCardModel(cost, type, rarity, target)
+    CustomCardModel(cost, type, rarity, target), ITempoCostCard
 {
+    private int _tempo = 0;
+
+    public int Tempo
+    {
+        get => _tempo;
+        set
+        {
+            if (_tempo == value)
+            {
+                return;
+            }
+            int oldValue = _tempo;
+            _tempo = value;
+            // TODO figure out if I want to log Tempo modification like Stars
+            // CombatManager.Instance.History.StarsModified(Owner.Creature.CombatState, this._tempo - oldValue, Owner);
+        }
+    }
+
+    public int GetTempoCostWithModifiers()
+    {
+        // TODO worry about Tempo modifiers
+        return Tempo;
+    }
+
     //Image size:
     //Normal art: 1000x760 (Using 500x380 should also work, it will simply be scaled.)
     //Full art: 606x852

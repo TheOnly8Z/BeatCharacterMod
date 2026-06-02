@@ -1,6 +1,7 @@
 ﻿using BeatCharacterMod.BeatCharacterModCode.Relics;
 using BeatCharacterMod.BeatCharacterModCode.Singletons;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -18,9 +19,9 @@ public class BeatWalkmanRelic() : BeatCharacterModRelic
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         MelodicFlowHoverTip.GetStaticTip("MELODIC_FLOW"), MelodicFlowHoverTip.TempoStatic()];
     
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Creature.Side || combatState.RoundNumber > 1)
+        if (!participants.Contains<Creature>(Owner.Creature) || Owner.PlayerCombatState.TurnNumber > 1)
             return;
         
         await MelodicFlowTracker.GainTempo(Owner, DynamicVars["Tempo"].BaseValue);

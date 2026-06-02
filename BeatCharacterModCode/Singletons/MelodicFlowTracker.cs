@@ -1,35 +1,38 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
 using BeatCharacterMod.BeatCharacterModCode.Character;
 using BeatCharacterMod.BeatCharacterModCode.Enums;
+using BeatCharacterMod.BeatCharacterModCode.Fields;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Singletons;
 
 public class MelodicFlowTracker() : CustomSingletonModel(true, false)
 {
-    public static readonly SpireField<PlayerCombatState, decimal> Tempo = new(() => 0);
-
-    public static readonly SpireField<PlayerCombatState, MelodicFlowState> MelodicFlow = new(() => MelodicFlowState.None);
+    // public static readonly SpireField<PlayerCombatState, decimal> Tempo = new(() => 0);
+    // public static readonly SpireField<PlayerCombatState, MelodicFlowState> MelodicFlow = new(() => MelodicFlowState.None);
     
-    public static Decimal GetTempo(Player player)
+    public static int GetTempo(Player player)
     {
-        return player.PlayerCombatState == null ? 0 : Tempo[player.PlayerCombatState];
+        if (player.PlayerCombatState == null)
+        {
+            return 0;
+        }
+        return MelodicFlowFields.CombatState[player.PlayerCombatState]?.Tempo ?? 0;
+        //return player.PlayerCombatState == null ? 0 : Tempo[player.PlayerCombatState];
     }
 
-    public static MelodicFlowState GetMelodicFlowState(PlayerCombatState state)
+    public static MelodicState GetMelodicFlowState(Player player)
     {
-        return MelodicFlow[state];
-    }
-
-    public static MelodicFlowState GetMelodicFlowState(Player player)
-    {
-        return player.PlayerCombatState == null ? MelodicFlowState.None : MelodicFlow[player.PlayerCombatState];
+        if (player.PlayerCombatState == null)
+        {
+            return MelodicState.None;
+        }
+        return MelodicFlowFields.CombatState[player.PlayerCombatState]?.MelodicState ?? MelodicState.None;
+        // return player.PlayerCombatState == null ? MelodicFlowState.None : MelodicFlow[player.PlayerCombatState];
     }
     
     /// <summary>
@@ -38,16 +41,15 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
     /// <param name="player">The player.</param>
     /// <param name="state">The state.</param>
     /// <returns>The task.</returns>
-    public static Task SetMelodicFlowState(Player player, MelodicFlowState state)
+    public static Task SetMelodicFlowState(Player player, MelodicState state)
     {
-        if (CombatManager.Instance.IsEnding || player.PlayerCombatState == null)
+        if (CombatManager.Instance.IsEnding || player.PlayerCombatState == null || MelodicFlowFields.CombatState[player.PlayerCombatState] == null)
             return Task.CompletedTask;
         
         // Maybe trigger "On enter state" hooks here
         
-        MainFile.Logger.Info( player.Character + " Melodic Flow state changing from " + MelodicFlow[player.PlayerCombatState] + " to " + state);
-        
-        MelodicFlow[player.PlayerCombatState] = state;
+        MelodicFlowFields.CombatState[player.PlayerCombatState].MelodicState = state;
+        // MelodicFlow[player.PlayerCombatState] = state;
         
         return Task.CompletedTask;
     }
@@ -65,9 +67,9 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
 
         // Maybe trigger "On tempo gain" hooks here
         
-        Tempo[player.PlayerCombatState] = Math.Min(999M, Tempo[player.PlayerCombatState] + amount);
-        
-        MainFile.Logger.Info( player.Character + " gained " + amount + " tempo, now has " + Tempo[player.PlayerCombatState]);
+        MelodicFlowFields.CombatState[player.PlayerCombatState].GainTempo(amount);
+        // Tempo[player.PlayerCombatState] = Math.Min(999M, Tempo[player.PlayerCombatState] + amount);
+        // MainFile.Logger.Info( player.Character + " gained " + amount + " tempo, now has " + Tempo[player.PlayerCombatState]);
         
         return Task.CompletedTask;
     }
@@ -85,9 +87,9 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
 
         // Maybe trigger "On tempo loss" hooks here
         
-        Tempo[player.PlayerCombatState] = Math.Max(0M, Tempo[player.PlayerCombatState] - amount);
-        
-        MainFile.Logger.Info( player.Character + " lost " + amount + " tempo, now has " + Tempo[player.PlayerCombatState]);
+        MelodicFlowFields.CombatState[player.PlayerCombatState].LoseTempo(amount);
+        // Tempo[player.PlayerCombatState] = Math.Max(0M, Tempo[player.PlayerCombatState] - amount);
+        // MainFile.Logger.Info( player.Character + " lost " + amount + " tempo, now has " + Tempo[player.PlayerCombatState]);
 
         return Task.CompletedTask;
     }
@@ -124,7 +126,7 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
     /// <returns>True if the keyword is active.</returns>
     public static bool IsInRhythmState(Player player)
     {
-        return GetMelodicFlowState(player) is MelodicFlowState.Rhythm or MelodicFlowState.Silence;
+        return GetMelodicFlowState(player) is MelodicState.Rhythm or MelodicState.Silence;
     }
     
     /// <summary>
@@ -134,9 +136,11 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
     /// <returns>True if the keyword is active.</returns>
     public static bool IsInResonanceState(Player player)
     {
-        return GetMelodicFlowState(player) is MelodicFlowState.Resonance or MelodicFlowState.Silence;
+        return GetMelodicFlowState(player) is MelodicState.Resonance or MelodicState.Silence;
     }
     
+    // Redundant; Tempo cost and Silence state discount is now handled via patch
+    /*
     public override bool TryModifyEnergyCostInCombatLate(
         CardModel card,
         Decimal originalCost,
@@ -151,6 +155,7 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         modifiedCost = originalCost - 1M;
         return true;
     }
+    */
     
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
@@ -167,40 +172,31 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
             return Task.CompletedTask;
         }
         
-        MelodicFlowState melodicFlowState = GetMelodicFlowState(player);
+        MelodicState melodicState = GetMelodicFlowState(player);
 
         // If player isn't in Melodic Flow, isn't Beat, and did not play one of Beat's cards, nothing happens 
-        if (melodicFlowState is MelodicFlowState.None
+        if (melodicState is MelodicState.None
             && player.Character is not Character.BeatCharacterMod
             && cardPlay.Card.Pool is not BeatCharacterModCardPool)
         {
             return Task.CompletedTask;
         }
         
-        Decimal tempo = GetTempo(player);
-
-        // Spend Tempo when in Silence state and playing a card that costed Energy
-        // Silence state is not changed until after card played (so that Rhythm/Resonance effects trigger as expected) 
-        if (melodicFlowState is MelodicFlowState.Silence && !cardPlay.Card.EnergyCost.CostsX && cardPlay.Card.EnergyCost.Canonical > 0M)
-        {
-            LoseTempo(player, 2M);
-        }
-        
         if (lastPlayedCardType != cardType)
         {
-            if (melodicFlowState == MelodicFlowState.Rhythm)
+            if (melodicState == MelodicState.Rhythm)
             {
                 GainTempo(player);
-            } else if (melodicFlowState is MelodicFlowState.None or MelodicFlowState.Resonance)
+            } else if (melodicState is MelodicState.None or MelodicState.Resonance)
             {
-                SetMelodicFlowState(player, MelodicFlowState.Rhythm);
+                SetMelodicFlowState(player, MelodicState.Rhythm);
             }
         }
         else
         {
-            if ( melodicFlowState is MelodicFlowState.None or MelodicFlowState.Rhythm)
+            if ( melodicState is MelodicState.None or MelodicState.Rhythm)
             {
-                SetMelodicFlowState(player, MelodicFlowState.Resonance);
+                SetMelodicFlowState(player, MelodicState.Resonance);
             }
         }
         
@@ -211,21 +207,21 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
     {
         Player player = cardPlay.Card.Owner;
 
-        MelodicFlowState melodicFlowState = GetMelodicFlowState(player);
+        MelodicState melodicState = GetMelodicFlowState(player);
         Decimal tempo = GetTempo(player);
 
-        if (melodicFlowState is MelodicFlowState.Silence && tempo <= 0M)
+        if (melodicState is MelodicState.Silence && tempo <= 0M)
         {
             CardType lastPlayedCardType = GetLastPlayedCardType(player, 1);
             CardType cardType = cardPlay.Card.Type;
             
             if (lastPlayedCardType != cardType)
             {
-                SetMelodicFlowState(player, MelodicFlowState.Rhythm);
+                SetMelodicFlowState(player, MelodicState.Rhythm);
             }
             else
             {
-                SetMelodicFlowState(player, MelodicFlowState.Resonance);
+                SetMelodicFlowState(player, MelodicState.Resonance);
             }
         }
 

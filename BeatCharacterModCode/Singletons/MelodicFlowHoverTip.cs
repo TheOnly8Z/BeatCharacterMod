@@ -26,7 +26,7 @@ public class MelodicFlowHoverTip() : CustomSingletonModel(false, false)
         return new HoverTip(title, description);
     }
 
-    public static IHoverTip FromMelodicFlow(MelodicFlowState state, CharacterModel character, params DynamicVar[] vars)
+    public static IHoverTip FromMelodicFlow(MelodicState state, CharacterModel character, params DynamicVar[] vars)
     {
         string str = StringHelper.Slugify(state.ToString());
         LocString title = L10NStatic("MELODIC_FLOW_" + str + ".title");

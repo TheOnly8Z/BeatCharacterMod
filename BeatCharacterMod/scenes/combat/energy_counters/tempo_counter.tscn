@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://BeatCharacterModCode/Nodes/NTempoCounter.cs" id="1_17mr2"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="2_e556n"]
+[ext_resource type="Texture2D" path="res://BeatCharacterMod/images/ui/combat/energy_tempo.png" id="3_l3vfd"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="6_618ps"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="7_8la5s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_arupd"]
+shader = ExtResource("2_e556n")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 1.0
+
+[node name="TempoCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = -212.0
+offset_right = 384.0
+offset_bottom = -83.99988
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_17mr2")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_arupd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_l3vfd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.00012207031
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 41
+
+[node name="CountLabel" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_outline_color = Color(1, 0.5921569, 0.6901961, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 14
+theme_override_fonts/normal_font = ExtResource("6_618ps")
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+theme_override_font_sizes/bold_italics_font_size = 36
+theme_override_font_sizes/italics_font_size = 36
+theme_override_font_sizes/mono_font_size = 36
+bbcode_enabled = true
+text = "[center]0[/center]"
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("7_8la5s")
+AutoSizeEnabled = false

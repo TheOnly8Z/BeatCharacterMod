@@ -1,4 +1,6 @@
 {
+  "TEMPO_COUNT.description": "Your current Tempo ({tempoIcon}) count. [pink]Beat's[/pink] cards may require Tempo to play or benefit from it.",
+  "TEMPO_COUNT.title": "Tempo",
   "TEMPO_STATIC.description": "A resource gained from [gold]Melodic Flow[/gold]. [pink]Beat's[/pink] cards may cost Tempo to play or benefit from it.",
   "TEMPO_STATIC.title": "Tempo",
   "MELODIC_FLOW_RHYTHM.description": "A [gold]Melodic Flow[/gold] state entered by playing a card with a different type than your last played card. Playing a card while already in Rhythm grants 1 [gold]Tempo[/gold].",
