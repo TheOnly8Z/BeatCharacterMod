@@ -17,5 +17,7 @@
   "BEATCHARACTERMOD-PLAY_THE_BLUES.title": "Play The Blues",
   "BEATCHARACTERMOD-ON_THE_BEAT.description": "Deal {Damage:diff()} damage. Put a card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
   "BEATCHARACTERMOD-ON_THE_BEAT.title": "On The Beat",
-  "BEATCHARACTERMOD-ON_THE_BEAT.selectionScreenPrompt": "Choose a card to put on top of your Draw Pile."
+  "BEATCHARACTERMOD-ON_THE_BEAT.selectionScreenPrompt": "Choose a card to put on top of your Draw Pile.",
+  "BEATCHARACTERMOD-OFFBEAT.description": "At the end of your turn, if this is in your Hand, lose {Tempo:tempoIcons()}.",
+  "BEATCHARACTERMOD-OFFBEAT.title": "Offbeat"
 }
