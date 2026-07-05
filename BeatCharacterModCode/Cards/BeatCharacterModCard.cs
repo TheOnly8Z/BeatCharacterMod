@@ -14,9 +14,9 @@ namespace BeatCharacterMod.BeatCharacterModCode.Cards;
 public abstract class BeatCharacterModCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     CustomCardModel(cost, type, rarity, target), ITempoCostCard
 {
-    private int _tempo = 0;
+    protected int _tempo = 0;
 
-    public int Tempo
+    public virtual int Tempo
     {
         get => _tempo;
         set

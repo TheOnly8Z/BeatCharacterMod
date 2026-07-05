@@ -78,21 +78,19 @@ public static class PlayerCombatStateExtensions
         }
         
         /// <summary>
-        /// Returns whether Rhythm keywords should trigger for a player (Rhythm or Silence state).
+        /// Returns whether Rhythm keywords should trigger for the player (Rhythm or Silence state).
         /// </summary>
-        /// <param name="player">The player.</param>
         /// <returns>True if the keyword is active.</returns>
-        public bool IsInRhythmState(Player player)
+        public bool IsInRhythmState()
         {
             return MelodicState is MelodicState.Rhythm or MelodicState.Silence;
         }
     
         /// <summary>
-        /// Returns whether Resonance keywords should trigger for a player (Resonance or Silence state).
+        /// Returns whether Resonance keywords should trigger for the player (Resonance or Silence state).
         /// </summary>
-        /// <param name="player">The player.</param>
         /// <returns>True if the keyword is active.</returns>
-        public bool IsInResonanceState(Player player)
+        public bool IsInResonanceState()
         {
             return MelodicState is MelodicState.Resonance or MelodicState.Silence;
         }

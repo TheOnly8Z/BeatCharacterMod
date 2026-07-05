@@ -6,5 +6,16 @@
   "BEATCHARACTERMOD-FIND_YOUR_VOICE.description": "Deal {CalculatedDamage:diff()} damage. Deals additional damage equal to double the amount of [img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img] you have.",
   "BEATCHARACTERMOD-FIND_YOUR_VOICE.title": "Find Your Voice",
   "BEATCHARACTERMOD-LOSE_YOUR_WAY.description": "Draw {Cards:diff()} {Cards:plural:card|cards}. Enter [gold]Silence[/gold].",
-  "BEATCHARACTERMOD-LOSE_YOUR_WAY.title": "Lose Your Way"
+  "BEATCHARACTERMOD-LOSE_YOUR_WAY.title": "Lose Your Way",
+  "BEATCHARACTERMOD-TONE_POLICE.description": "Deal {Damage:diff()} damage.\n[gold]Rhythm[/gold]: Add {Cards:diff()} [gold]{Cards:plural:Flat|Flats}[/gold] into your [gold]Hand[/gold].\n[gold]Resonance[/gold]: Add {Cards:diff()} [gold]{Cards:plural:Sharp|Sharps}[/gold] into your [gold]Hand[/gold].",
+  "BEATCHARACTERMOD-TONE_POLICE.title": "Tone Police",
+  "BEATCHARACTERMOD-SHARP.description": "Deal {Damage:diff()} damage.",
+  "BEATCHARACTERMOD-SHARP.title": "Sharp",
+  "BEATCHARACTERMOD-FLAT.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "BEATCHARACTERMOD-FLAT.title": "Flat",
+  "BEATCHARACTERMOD-PLAY_THE_BLUES.description": "Gain {Block:diff()} [gold]Block[/gold]. Add {Cards:diff()} [gold]{Cards:plural:Flat|Flats}[/gold] into your [gold]Hand[/gold].",
+  "BEATCHARACTERMOD-PLAY_THE_BLUES.title": "Play The Blues",
+  "BEATCHARACTERMOD-ON_THE_BEAT.description": "Deal {Damage:diff()} damage. Put a card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
+  "BEATCHARACTERMOD-ON_THE_BEAT.title": "On The Beat",
+  "BEATCHARACTERMOD-ON_THE_BEAT.selectionScreenPrompt": "Choose a card to put on top of your Draw Pile."
 }
