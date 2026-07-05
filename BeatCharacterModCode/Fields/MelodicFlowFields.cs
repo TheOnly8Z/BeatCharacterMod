@@ -2,6 +2,7 @@
 using BeatCharacterMod.BeatCharacterModCode.Extensions;
 using BeatCharacterMod.BeatCharacterModCode.Nodes;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;

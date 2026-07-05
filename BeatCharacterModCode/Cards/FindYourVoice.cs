@@ -35,7 +35,7 @@ public class FindYourVoice() : BeatCharacterModCard(1,
         FindYourVoice card = this;
         ArgumentNullException.ThrowIfNull(play.Target, "play.Target");
         AttackCommand attackCommand = await DamageCmd.Attack(card.DynamicVars.CalculatedDamage)
-            .FromCard((CardModel) card)
+            .FromCard((CardModel) card, play)
             .Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);

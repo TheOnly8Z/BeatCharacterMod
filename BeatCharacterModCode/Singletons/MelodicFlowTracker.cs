@@ -1,12 +1,15 @@
 ﻿using BaseLib.Abstracts;
 using BeatCharacterMod.BeatCharacterModCode.Character;
 using BeatCharacterMod.BeatCharacterModCode.Enums;
+using BeatCharacterMod.BeatCharacterModCode.Extensions;
 using BeatCharacterMod.BeatCharacterModCode.Fields;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Singletons;
 
@@ -194,7 +197,7 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         }
         else
         {
-            if ( melodicState is MelodicState.None or MelodicState.Rhythm)
+            if (melodicState is MelodicState.None or MelodicState.Rhythm)
             {
                 SetMelodicFlowState(player, MelodicState.Resonance);
             }
@@ -209,12 +212,12 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
 
         MelodicState melodicState = GetMelodicFlowState(player);
         Decimal tempo = GetTempo(player);
-
+        
+        CardType lastPlayedCardType = GetLastPlayedCardType(player, 1);
+        CardType cardType = cardPlay.Card.Type;
+        
         if (melodicState is MelodicState.Silence && tempo <= 0M)
         {
-            CardType lastPlayedCardType = GetLastPlayedCardType(player, 1);
-            CardType cardType = cardPlay.Card.Type;
-            
             if (lastPlayedCardType != cardType)
             {
                 SetMelodicFlowState(player, MelodicState.Rhythm);
@@ -225,6 +228,11 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
             }
         }
 
+        if (player.PlayerCombatState != null)
+        {
+            player.PlayerCombatState.MelodicFlow().LastPlayedCardType = cardType;
+        }
+        
         return Task.CompletedTask;
     }
 }

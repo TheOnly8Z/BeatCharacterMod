@@ -7,7 +7,7 @@
   "MELODIC_FLOW_RHYTHM.title": "Rhythm",
   "MELODIC_FLOW_RESONANCE.description": "A [gold]Melodic Flow[/gold] state entered by playing a card with the same type as your last played card.",
   "MELODIC_FLOW_RESONANCE.title": "Resonance",
-  "MELODIC_FLOW_SILENCE.description": "A [gold]Melodic Flow[/gold] state that counts as both [gold]Rhythm[/gold] and [gold]Resonance[/gold]. Card cost is reduced by {energyPrefix:energyIcons(1)} and increased by [img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img][img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img]. Ends when you run out of [gold]Tempo[/gold].",
+  "MELODIC_FLOW_SILENCE.description": "A [gold]Melodic Flow[/gold] state that counts as both [gold]Rhythm[/gold] and [gold]Resonance[/gold]. Card cost is reduced by {energyPrefix:energyIcons(1)} and increased by {tempoIcon}{tempoIcon}. Ends when you run out of [gold]Tempo[/gold].",
   "MELODIC_FLOW_SILENCE.title": "Silence",
   "MELODIC_FLOW.description": "A state of [gold]Rhythm[/gold] and [gold]Resonance[/gold] that changes based on the last played card type.",
   "MELODIC_FLOW.title": "Melodic Flow"

@@ -6,5 +6,5 @@
 Character and related art assets from the game UNBEATABLE by D-CELL Games. This mod is a fan work unaffliated with D-CELL Games.
 
 ### Additional Art Assets
-- Tempo icon by Gregor Cresnar from Noun Project (CC BY 3.0)
+- Metronome icon created by Andrejs Kirma - Flaticon
 - Random icon created by Lagot Design - Flaticon

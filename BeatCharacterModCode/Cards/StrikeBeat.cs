@@ -25,7 +25,7 @@ public class StrikeBeat() : BeatCharacterModCard(1,
         StrikeBeat card = this;
         ArgumentNullException.ThrowIfNull(play.Target, "play.Target");
         AttackCommand attackCommand = await DamageCmd.Attack(card.DynamicVars.Damage.BaseValue)
-            .FromCard((CardModel) card)
+            .FromCard((CardModel) card, play)
             .Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

@@ -61,6 +61,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="BeatCharacterModCode\Afflictions\" />
         <Folder Include="BeatCharacterModCode\HoverTips\" />
         <Folder Include="BeatCharacterModCode\Utils\" />
         <Folder Include="BeatCharacterModCode\Nodes\" />

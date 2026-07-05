@@ -1,6 +1,7 @@
 ﻿using BeatCharacterMod.BeatCharacterModCode.Enums;
 using BeatCharacterMod.BeatCharacterModCode.Fields;
 using BeatCharacterMod.BeatCharacterModCode.Singletons;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Extensions;
@@ -11,6 +12,7 @@ public static class PlayerCombatStateExtensions
     {
         private int _tempo;
         private MelodicState _melodicState;
+        private CardType _lastPlayedCardType;
         
         public int Tempo
         {
@@ -43,11 +45,28 @@ public static class PlayerCombatStateExtensions
                 MainFile.Logger.Info( state._player + " Melodic Flow changed from " + oldValue + " to " + value);
             }
         }
+
+        public CardType LastPlayedCardType
+        {
+            get => _lastPlayedCardType;
+            set
+            {
+                if (_lastPlayedCardType == value)
+                    return;
+                var oldValue = _lastPlayedCardType;
+                _lastPlayedCardType = value;
+                LastPlayedCardTypeChanged?.Invoke(oldValue, value);
+                
+                MainFile.Logger.Info( state._player + " Last Played Card Type changed from " + oldValue + " to " + value);
+            }
+        }
         
         public event Action<MelodicState, MelodicState>? MelodicStateChanged;
 
         public event Action<int, int>? TempoChanged;
-
+        
+        public event Action<CardType, CardType>? LastPlayedCardTypeChanged;
+        
         public void GainTempo(Decimal amount)
         {
             Tempo = !(amount < 0M) ? (int) Math.Clamp(Tempo + amount, 0, 999999999M) : throw new ArgumentException("Must not be negative.", nameof (amount));

@@ -17,7 +17,7 @@ public class PatchNCombatUi
         if (counter == null) return;
         counter.Initialize(LocalContext.GetMe(state)!);
         counter.Reparent(__instance._energyCounter);
-        counter.Position = new Vector2(0, -120);
-        counter.Size = new Vector2(128, 128);
+        counter.Position = new Vector2(0, -150);
+        //counter.Size = new Vector2(128, 128);
     }
 }
