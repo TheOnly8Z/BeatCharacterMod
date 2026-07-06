@@ -21,5 +21,7 @@
   "BEATCHARACTERMOD-OFFBEAT.description": "At the end of your turn, if this is in your [gold]Hand[/gold], lose {Tempo:tempoIcons()}.",
   "BEATCHARACTERMOD-OFFBEAT.title": "Offbeat",
   "BEATCHARACTERMOD-DRUM_RUSH.description": "Shuffle an [gold]Offbeat[/gold] into your [gold]Draw Pile[/gold]. Draw {Cards:diff()} {Cards:plural:card|cards}.\n",
-  "BEATCHARACTERMOD-DRUM_RUSH.title": "Drum Rush"
+  "BEATCHARACTERMOD-DRUM_RUSH.title": "Drum Rush",
+  "BEATCHARACTERMOD-CHARRED_MEMOIR.description": "Enter [gold]Silence[/gold]. Add a [gold]Burn[/gold] to your [gold]Hand[/gold].",
+  "BEATCHARACTERMOD-CHARRED_MEMOIR.title": "Charred Memoir"
 }
