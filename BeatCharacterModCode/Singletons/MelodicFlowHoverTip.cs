@@ -25,13 +25,15 @@ public class MelodicFlowHoverTip() : CustomSingletonModel(false, false)
         }
         return new HoverTip(title, description);
     }
-
-    public static IHoverTip FromMelodicFlow(MelodicState state, CharacterModel character, params DynamicVar[] vars)
+    
+    public static IHoverTip FromMelodicFlow(MelodicState state, AbstractModel model, params DynamicVar[] vars)
     {
         string str = StringHelper.Slugify(state.ToString());
         LocString title = L10NStatic("MELODIC_FLOW_" + str + ".title");
         LocString description = L10NStatic("MELODIC_FLOW_" + str + ".description");
-        description.Add("energyPrefix", EnergyIconHelper.GetPrefix(character));
+        description.Add("energyPrefix", EnergyIconHelper.GetPrefix(model));
+        description.Add("tempoIcon", "[img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img]");
+        
         foreach (DynamicVar var in vars)
         {
             title.Add(var);

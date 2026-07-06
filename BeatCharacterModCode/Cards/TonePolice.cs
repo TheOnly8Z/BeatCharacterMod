@@ -1,10 +1,13 @@
 ﻿using BeatCharacterMod.BeatCharacterModCode.Cards;
+using BeatCharacterMod.BeatCharacterModCode.Enums;
 using BeatCharacterMod.BeatCharacterModCode.Extensions;
 using BeatCharacterMod.BeatCharacterModCode.Interfaces;
+using BeatCharacterMod.BeatCharacterModCode.Singletons;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -21,6 +24,12 @@ public class TonePolice() : BeatCharacterModCard(1,
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5M, ValueProp.Move), new CardsVar(1)];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        MelodicFlowHoverTip.FromMelodicFlow(MelodicState.Rhythm, this),
+        MelodicFlowHoverTip.FromMelodicFlow(MelodicState.Resonance, this),
+        HoverTipFactory.FromCard<Flat>(),
+        HoverTipFactory.FromCard<Sharp>(),];
+    
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)

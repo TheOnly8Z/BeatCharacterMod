@@ -2,12 +2,14 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using BeatCharacterMod.BeatCharacterModCode.Extensions;
+using BeatCharacterMod.BeatCharacterModCode.Singletons;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -28,6 +30,9 @@ public class Offbeat() : CustomCardModel(1, CardType.Status, CardRarity.Status, 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
         CardKeyword.Ethereal, CardKeyword.Exhaust
     ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [MelodicFlowHoverTip.TempoStatic()];
+    
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         Owner.PlayerCombatState.MelodicFlow().LoseTempo(DynamicVars["Tempo"].BaseValue);
