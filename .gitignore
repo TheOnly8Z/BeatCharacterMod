@@ -3,3 +3,13 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+.godot/imported
+.godot/exported
+*.png.import
+*.cs.uid
+uid_cache.bin
+project_metadata.cfg
+global_script_class_cache.cfg
+.godot/editor
+.idea/
+*.DotSettings.user
