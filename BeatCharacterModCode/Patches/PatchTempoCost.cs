@@ -33,10 +33,10 @@ public class PatchTempoCost
             tempoCost = Math.Max(0, beatCard.GetTempoCostWithModifiers());
         }
         
-        if (energyCost > 0 && !card.EnergyCost.CostsX
-                           && MelodicFlowTracker.GetMelodicFlowState(____player) == MelodicState.Silence)
+        // TODO this is hacky and we can't represent it
+        if (!card.EnergyCost.CostsX && MelodicFlowTracker.GetMelodicFlowState(____player) == MelodicState.Silence)
         {
-            energyCost -= 1;
+            energyCost = Math.Max(0, energyCost - 1);
             tempoCost += 1;
         }
         
@@ -67,10 +67,10 @@ public class PatchTempoCost
             __state = Math.Max(0, beatCard.GetTempoCostWithModifiers());
         }
         
-        if (amount > 0 && !__instance.EnergyCost.CostsX
-                       && __instance.Owner.PlayerCombatState?.MelodicFlow().MelodicState == MelodicState.Silence)
+        // TODO this is hacky and we can't represent it
+        if (!__instance.EnergyCost.CostsX && __instance.Owner.PlayerCombatState?.MelodicFlow().MelodicState == MelodicState.Silence)
         {
-            amount -= 1;
+            amount = Math.Max(0, amount - 1);
             __state += 1;
         }
     }

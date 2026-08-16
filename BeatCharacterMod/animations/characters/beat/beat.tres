@@ -1,0 +1,199 @@
+[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://0eo4p58iqsxr"]
+
+[ext_resource type="Texture2D" uid="uid://b0600og0qb1pt" path="res://BeatCharacterMod/animations/characters/beat/dead_01.png" id="1_1c0vy"]
+[ext_resource type="Texture2D" uid="uid://di2oploslgevq" path="res://BeatCharacterMod/animations/characters/beat/idle_01.png" id="1_2uk7x"]
+[ext_resource type="Texture2D" uid="uid://cbpy5uf1gficv" path="res://BeatCharacterMod/animations/characters/beat/attack01_01.png" id="1_xjb1d"]
+[ext_resource type="Texture2D" uid="uid://ewxlb5jgxl2m" path="res://BeatCharacterMod/animations/characters/beat/idle_02.png" id="2_0pycq"]
+[ext_resource type="Texture2D" uid="uid://dlx3b8k8jpxml" path="res://BeatCharacterMod/animations/characters/beat/attack01_02.png" id="2_am2yt"]
+[ext_resource type="Texture2D" uid="uid://cc16qm46k55h2" path="res://BeatCharacterMod/animations/characters/beat/dead_02.png" id="2_d5eas"]
+[ext_resource type="Texture2D" uid="uid://dcxsixuj8qi3a" path="res://BeatCharacterMod/animations/characters/beat/idle_03.png" id="3_5xm7j"]
+[ext_resource type="Texture2D" uid="uid://dthxudqtoab5w" path="res://BeatCharacterMod/animations/characters/beat/dead_03.png" id="3_mxbj7"]
+[ext_resource type="Texture2D" uid="uid://b1hvyim8ubb3w" path="res://BeatCharacterMod/animations/characters/beat/attack01_03.png" id="3_qjuus"]
+[ext_resource type="Texture2D" uid="uid://c2vuetotam8tp" path="res://BeatCharacterMod/animations/characters/beat/idle_04.png" id="4_1c0vy"]
+[ext_resource type="Texture2D" uid="uid://dxwnopgrytnlb" path="res://BeatCharacterMod/animations/characters/beat/cast_01.png" id="4_boxbf"]
+[ext_resource type="Texture2D" uid="uid://36rfj1cir82o" path="res://BeatCharacterMod/animations/characters/beat/idle_05.png" id="5_d5eas"]
+[ext_resource type="Texture2D" uid="uid://brvwpbdl2fs24" path="res://BeatCharacterMod/animations/characters/beat/cast_02.png" id="5_t8mng"]
+[ext_resource type="Texture2D" uid="uid://dr5obgc63ubda" path="res://BeatCharacterMod/animations/characters/beat/cast_03.png" id="6_cf165"]
+[ext_resource type="Texture2D" uid="uid://ce743mbrj0ifo" path="res://BeatCharacterMod/animations/characters/beat/idle_06.png" id="6_mxbj7"]
+[ext_resource type="Texture2D" uid="uid://co5rybmnys113" path="res://BeatCharacterMod/animations/characters/beat/hurt01.png" id="7_agwxm"]
+[ext_resource type="Texture2D" uid="uid://c78eyrsb87s1y" path="res://BeatCharacterMod/animations/characters/beat/cast_04.png" id="7_jwx4m"]
+[ext_resource type="Texture2D" uid="uid://d2noflfpk0gj8" path="res://BeatCharacterMod/animations/characters/beat/hurt02.png" id="8_m7rjc"]
+[ext_resource type="Texture2D" uid="uid://bg2wjvxqya5ow" path="res://BeatCharacterMod/animations/characters/beat/cast_05.png" id="8_pjxiy"]
+[ext_resource type="Texture2D" uid="uid://dj7gd7ht3fjud" path="res://BeatCharacterMod/animations/characters/beat/hurt03.png" id="9_x17ge"]
+[ext_resource type="Texture2D" uid="uid://dpxm6kegr6m7p" path="res://BeatCharacterMod/animations/characters/beat/intro_01.png" id="21_0fk6o"]
+[ext_resource type="Texture2D" uid="uid://d3olo1jpveag" path="res://BeatCharacterMod/animations/characters/beat/intro_02.png" id="22_1rkr2"]
+[ext_resource type="Texture2D" uid="uid://ircov71agsb5" path="res://BeatCharacterMod/animations/characters/beat/intro_03.png" id="23_s16df"]
+[ext_resource type="Texture2D" uid="uid://c0sfxkphfs0ni" path="res://BeatCharacterMod/animations/characters/beat/intro_04.png" id="24_1jnmc"]
+[ext_resource type="Texture2D" uid="uid://b2nfndlsn31me" path="res://BeatCharacterMod/animations/characters/beat/intro_05.png" id="25_ax81r"]
+[ext_resource type="Texture2D" uid="uid://c1qn245yoy3oq" path="res://BeatCharacterMod/animations/characters/beat/intro_06.png" id="26_8drg0"]
+[ext_resource type="Texture2D" uid="uid://bcpwn3fegqywg" path="res://BeatCharacterMod/animations/characters/beat/intro_07.png" id="27_3u0qp"]
+[ext_resource type="Texture2D" uid="uid://bo2indx1soqgq" path="res://BeatCharacterMod/animations/characters/beat/intro_08.png" id="28_mqk61"]
+[ext_resource type="Texture2D" uid="uid://be7d4ecn0l26p" path="res://BeatCharacterMod/animations/characters/beat/intro_09.png" id="29_3h5a1"]
+[ext_resource type="Texture2D" uid="uid://cftt4x8hw6xp6" path="res://BeatCharacterMod/animations/characters/beat/relaxed_01.png" id="30_3u0qp"]
+[ext_resource type="Texture2D" uid="uid://d2bhetniximey" path="res://BeatCharacterMod/animations/characters/beat/relaxed_02.png" id="31_mqk61"]
+[ext_resource type="Texture2D" uid="uid://bgb6ucy8jha50" path="res://BeatCharacterMod/animations/characters/beat/relaxed_03.png" id="32_3h5a1"]
+[ext_resource type="Texture2D" uid="uid://b80buj2ub4khg" path="res://BeatCharacterMod/animations/characters/beat/relaxed_04.png" id="33_0b6b1"]
+[ext_resource type="Texture2D" uid="uid://821873kjadvi" path="res://BeatCharacterMod/animations/characters/beat/relaxed_05.png" id="34_3tet6"]
+[ext_resource type="Texture2D" uid="uid://5g2tb6m5iwgx" path="res://BeatCharacterMod/animations/characters/beat/relaxed_06.png" id="35_rv0ym"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xjb1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_am2yt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qjuus")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_boxbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t8mng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cf165")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jwx4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pjxiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cf165")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jwx4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pjxiy")
+}],
+"loop": true,
+"name": &"cast",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1c0vy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d5eas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mxbj7")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_agwxm")
+}],
+"loop": true,
+"name": &"hurt1",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_m7rjc")
+}],
+"loop": true,
+"name": &"hurt2",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_x17ge")
+}],
+"loop": true,
+"name": &"hurt3",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2uk7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0pycq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5xm7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1c0vy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d5eas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mxbj7")
+}],
+"loop": true,
+"name": &"idle_loop",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("21_0fk6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_1rkr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_s16df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_1jnmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ax81r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_8drg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_3u0qp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_mqk61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_3h5a1")
+}],
+"loop": true,
+"name": &"intro",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_3u0qp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_mqk61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_3h5a1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_0b6b1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_3tet6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_rv0ym")
+}],
+"loop": true,
+"name": &"relaxed_loop",
+"speed": 10.0
+}]

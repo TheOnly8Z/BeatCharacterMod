@@ -7,10 +7,11 @@ namespace BeatCharacterMod.BeatCharacterModCode.Nodes;
 public partial class CardTempoCostDisplay : Control
 {
     // TODO create a scene instead of this
-    /*
     public static AddedNode<NCard, CardTempoCostDisplay> Node = new((card) =>
     {
         var control = new CardTempoCostDisplay();
+        control.Name = "TempoCostDisplay";
+        control.UniqueNameInOwner = true;
         
         // TODO replace this with the proper background
         var tex = ResourceLoader.Load<Texture2D>("res://BeatCharacterMod/images/ui/combat/energy_tempo.png");
@@ -29,11 +30,13 @@ public partial class CardTempoCostDisplay : Control
         control.Position = new(-126, -231);
         control.AddChild(texRect);
         
-        var label = new Label { Text = "1" };
+        var label = new Label { Text = "?" };
+        label.Name = "CostLabel";
+        label.UniqueNameInOwner = true;
         label.SetAnchorsAndOffsetsPreset(LayoutPreset.Center);
         control.AddChild(label);
         
         return control;
     });
-    */
+
 }

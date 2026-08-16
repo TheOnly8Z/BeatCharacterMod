@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Character;
 
@@ -64,5 +65,6 @@ public class BeatCharacterMod : PlaceholderCharacterModel
     public override string CustomCharacterSelectLockedIconPath => "char_select_beat_locked.png".CharacterUiPath();
     public override string CustomMapMarkerPath => "map_marker_beat.png".CharacterUiPath();
     public override string CustomCharacterSelectBg => "char_select_bg_beat.tscn".CharacterSelectScreenPath();
+    public override string CustomVisualPath => Path.Join(MainFile.ResPath, "scenes", "creature_visuals", "beat.tscn");
 
 }

@@ -26,7 +26,7 @@ public class LoseYourWay() : BeatCharacterModCard(2,
     {
         LoseYourWay cardSource = this;
         IEnumerable<CardModel> cardModels = await CardPileCmd.Draw(choiceContext, cardSource.DynamicVars.Cards.BaseValue, cardSource.Owner);
-
+        await CreatureCmd.TriggerAnim(cardSource.Owner.Creature, "Cast", cardSource.Owner.Character.CastAnimDelay);
         await MelodicFlowTracker.SetMelodicFlowState(Owner, MelodicState.Silence);
     }
 
