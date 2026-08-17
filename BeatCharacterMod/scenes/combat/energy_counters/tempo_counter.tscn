@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://dat783itdtsfg"]
 
-[ext_resource type="Script" path="res://BeatCharacterModCode/Nodes/NTempoCounter.cs" id="1_17mr2"]
+[ext_resource type="Script" path="res://BeatCharacterModCode/Nodes/NTempoCounter.cs" id="1_ishxe"]
 [ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="2_e556n"]
+[ext_resource type="Texture2D" path="res://BeatCharacterMod/images/ui/combat/energy_tempo_flipped.png" id="2_k5ynv"]
 [ext_resource type="Texture2D" path="res://BeatCharacterMod/images/ui/combat/energy_tempo.png" id="3_l3vfd"]
 [ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="6_618ps"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="7_8la5s"]
@@ -22,9 +23,21 @@ offset_top = -212.0
 offset_right = 384.0
 offset_bottom = -83.99988
 grow_vertical = 0
-scale = Vector2(0.8, 0.8)
-script = ExtResource("1_17mr2")
+script = ExtResource("1_ishxe")
 metadata/_edit_group_ = true
+
+[node name="IconFlipped" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_arupd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_k5ynv")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Icon" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_arupd")
@@ -32,8 +45,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.5
-offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -43,7 +54,7 @@ stretch_mode = 5
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_top = 92.0
+offset_top = 88.0
 offset_right = 128.0
 offset_bottom = 124.0
 grow_horizontal = 2

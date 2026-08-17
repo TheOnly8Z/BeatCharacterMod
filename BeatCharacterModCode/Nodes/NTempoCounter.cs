@@ -34,6 +34,7 @@ public partial class NTempoCounter : Control
 	private RichTextLabel _labelLastCard;
 
 	private Control _icon;
+	private Control _iconFlipped;
 
 	private ShaderMaterial _hsv;
 
@@ -61,6 +62,8 @@ public partial class NTempoCounter : Control
 		_labelStance = GetNode<RichTextLabel>("%StanceLabel");
 		_labelLastCard = GetNode<RichTextLabel>("%LastPlayedTypeLabel");
 		_icon = GetNode<Control>("Icon");
+		_iconFlipped = GetNode<Control>("IconFlipped");
+		_iconFlipped.Visible = false;
 		_hsv = (ShaderMaterial)_icon.Material;
 		
 		Connect(Control.SignalName.MouseEntered, Callable.From(OnHovered));
@@ -94,6 +97,9 @@ public partial class NTempoCounter : Control
 			_player.PlayerCombatState.MelodicFlow().MelodicStateChanged += OnMelodicStateChanged;
 			_player.PlayerCombatState.MelodicFlow().LastPlayedCardTypeChanged += OnLastPlayedCardTypeChanged;
 			_isListeningToCombatState = true;
+			SetTempoCountText(0);
+			SetMelodicStateText(MelodicState.None);
+			SetLastPlayedCardText(CardType.None);
 		}
 	}
 
@@ -202,11 +208,17 @@ public partial class NTempoCounter : Control
 			this.MoveChildSafely(node2D, 0);
 			node2D.Position = base.Size / 2f;
 		}
+
+		if (newCount != oldCount)
+		{
+			_icon.Visible = !_icon.Visible;
+			_iconFlipped.Visible = !_iconFlipped.Visible;
+		}
 	}
 
-	private void SetTempoCountText(int tempo)
+	private void SetTempoCountText(int tempo, bool force = false)
 	{
-		if (_displayedStarCount != tempo)
+		if (_displayedStarCount != tempo || force)
 		{
 			_displayedStarCount = tempo;
 			_label.AddThemeColorOverride(ThemeConstants.Label.FontColor, (tempo == 0) ? StsColors.red : StsColors.cream);
@@ -224,18 +236,18 @@ public partial class NTempoCounter : Control
 		}
 	}
 
-	private void SetMelodicStateText(MelodicState state)
+	private void SetMelodicStateText(MelodicState state, bool force = false)
 	{
-		if (_displayedMelodicState != state)
+		if (_displayedMelodicState != state || force)
 		{
 			_displayedMelodicState = state;
 			_labelStance.Text = new LocString("static_hover_tips", "MELODIC_FLOW_" + _displayedMelodicState.ToString().ToUpper() + ".title").GetRawText();
 		}
 	}
 
-	private void SetLastPlayedCardText(CardType type)
+	private void SetLastPlayedCardText(CardType type, bool force = false)
 	{
-		if (_lastCardType != type)
+		if (_lastCardType != type || force)
 		{
 			_lastCardType = type;
 			_labelLastCard.Text = type.ToLocString().GetRawText();
