@@ -36,6 +36,8 @@ public partial class CardTempoCostDisplay : Control
         label.SetAnchorsAndOffsetsPreset(LayoutPreset.Center);
         control.AddChild(label);
         
+        control.SetVisible(false);
+        
         return control;
     });
 

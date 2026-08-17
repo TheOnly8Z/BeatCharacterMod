@@ -1,3 +1,5 @@
 {
-  
+  "BEATCHARACTERMOD-DANCE_DELIGHTFUL_POWER.description": "Gain [gold]Strength[/gold] while in [gold]Rhythm[/gold].\nGain [gold]Dexterity[/gold] while in [gold]Resonance[/gold].",
+  "BEATCHARACTERMOD-DANCE_DELIGHTFUL_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold] while in [gold]Rhythm[/gold].\nGain [blue]{Amount}[/blue] [gold]Dexterity[/gold] while in [gold]Resonance[/gold].",
+  "BEATCHARACTERMOD-DANCE_DELIGHTFUL_POWER.title": "Dance Delightful"
 }

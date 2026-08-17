@@ -48,6 +48,36 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_3cycn"]
+resource_name = "cast"
+length = 0.667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1e-05),
+"update": 1,
+"values": [&"cast"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"cast", 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_3noj4"]
 resource_name = "die"
 tracks/0/type = "value"
@@ -60,7 +90,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1e-05),
 "update": 1,
-"values": [&"dead"]
+"values": [&"die"]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -107,9 +137,8 @@ tracks/1/keys = {
 "values": [&"hurt2"]
 }
 
-[sub_resource type="Animation" id="Animation_3cycn"]
-resource_name = "cast"
-length = 0.667
+[sub_resource type="Animation" id="Animation_cmaiq"]
+resource_name = "idle_loop"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -120,7 +149,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1e-05),
 "update": 1,
-"values": [&"cast"]
+"values": [&"idle_loop"]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -132,7 +161,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [&"cast", 1.0, false],
+"args": [&"idle_loop", 1.0, false],
 "method": &"play"
 }]
 }
@@ -163,35 +192,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"intro", 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_cmaiq"]
-resource_name = "idle_loop"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1e-05),
-"update": 1,
-"values": [&"idle_loop"]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"idle_loop", 1.0, false],
 "method": &"play"
 }]
 }
@@ -244,7 +244,7 @@ animation = &"attack"
 animation = &"cast"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w0iqm"]
-animation = &"dead"
+animation = &"die"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a3w7c"]
 animation = &"hurt"
@@ -286,13 +286,13 @@ states/attack/node = SubResource("AnimationNodeAnimation_cmaiq")
 states/attack/position = Vector2(420, 242)
 states/cast/node = SubResource("AnimationNodeAnimation_hpajm")
 states/cast/position = Vector2(566, 242)
-states/dead/node = SubResource("AnimationNodeAnimation_w0iqm")
-states/dead/position = Vector2(680, 100)
+states/die/node = SubResource("AnimationNodeAnimation_w0iqm")
+states/die/position = Vector2(680, 100)
 states/hurt/node = SubResource("AnimationNodeAnimation_a3w7c")
 states/hurt/position = Vector2(270, 242)
 states/idle/node = SubResource("AnimationNodeAnimation_3noj4")
 states/idle/position = Vector2(420, 100)
-transitions = ["idle", "attack", SubResource("AnimationNodeStateMachineTransition_hpajm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_3cycn"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_vpjyu"), "dead", "idle", SubResource("AnimationNodeStateMachineTransition_fba77"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_tl8r5"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_x33r6"), "idle", "cast", SubResource("AnimationNodeStateMachineTransition_vv8fx"), "cast", "idle", SubResource("AnimationNodeStateMachineTransition_rs0uy"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_cmaiq")]
+transitions = ["idle", "attack", SubResource("AnimationNodeStateMachineTransition_hpajm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_3cycn"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_vpjyu"), "die", "idle", SubResource("AnimationNodeStateMachineTransition_fba77"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_tl8r5"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_x33r6"), "idle", "cast", SubResource("AnimationNodeStateMachineTransition_vv8fx"), "cast", "idle", SubResource("AnimationNodeStateMachineTransition_rs0uy"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_cmaiq")]
 graph_offset = Vector2(-437, -56)
 
 [node name="Beat" type="Node2D"]

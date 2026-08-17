@@ -1,5 +1,7 @@
 ﻿using BeatCharacterMod.BeatCharacterModCode.Enums;
+using BeatCharacterMod.BeatCharacterModCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Models;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Extensions;
 using static PlayerCombatStateExtensions;
@@ -11,7 +13,7 @@ public static class CombatStateTrackerExtensions
         tracker.NotifyCombatStateChanged("OnPlayerCombatStateValueChanged");
     }
     
-    private static void OnMelodicStateChanged(this CombatStateTracker tracker, MelodicState _, MelodicState __)
+    private static void OnMelodicStateChanged(this CombatStateTracker tracker, MelodicState state_old, MelodicState state_new)
     {
         tracker.NotifyCombatStateChanged("OnPlayerCombatStateValueChanged");
     }

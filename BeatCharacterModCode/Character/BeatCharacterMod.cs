@@ -66,5 +66,7 @@ public class BeatCharacterMod : PlaceholderCharacterModel
     public override string CustomMapMarkerPath => "map_marker_beat.png".CharacterUiPath();
     public override string CustomCharacterSelectBg => "char_select_bg_beat.tscn".CharacterSelectScreenPath();
     public override string CustomVisualPath => Path.Join(MainFile.ResPath, "scenes", "creature_visuals", "beat.tscn");
-
+    
+    // TODO this should be a separate visual
+    // public override string CustomMerchantAnimPath => Path.Join(MainFile.ResPath, "scenes", "creature_visuals", "beat.tscn");
 }

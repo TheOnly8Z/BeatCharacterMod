@@ -3,12 +3,14 @@ using BeatCharacterMod.BeatCharacterModCode.Character;
 using BeatCharacterMod.BeatCharacterModCode.Enums;
 using BeatCharacterMod.BeatCharacterModCode.Extensions;
 using BeatCharacterMod.BeatCharacterModCode.Fields;
+using BeatCharacterMod.BeatCharacterModCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 
 namespace BeatCharacterMod.BeatCharacterModCode.Singletons;
@@ -44,17 +46,28 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
     /// <param name="player">The player.</param>
     /// <param name="state">The state.</param>
     /// <returns>The task.</returns>
-    public static Task SetMelodicFlowState(Player player, MelodicState state)
+    public static async Task SetMelodicFlowState(Player player, MelodicState state)
     {
         if (CombatManager.Instance.IsEnding || player.PlayerCombatState == null || MelodicFlowFields.CombatState[player.PlayerCombatState] == null)
-            return Task.CompletedTask;
+            return;
+
+        MelodicState old_state = MelodicFlowFields.CombatState[player.PlayerCombatState].MelodicState;
         
         // Maybe trigger "On enter state" hooks here
         
         MelodicFlowFields.CombatState[player.PlayerCombatState].MelodicState = state;
         // MelodicFlow[player.PlayerCombatState] = state;
         
-        return Task.CompletedTask;
+        // TODO this is probably BAD
+        foreach (AbstractModel model in Hook.IterateCombatHookListeners(player.Creature.CombatState))
+        {
+            if (model is IMelodicStatePower melodicStatePower)
+            {
+                await melodicStatePower.AfterMelodicStateChanged(player, old_state, state);
+                model.InvokeExecutionFinished();
+            }
+        }
+        
     }
 
     /// <summary>
@@ -160,71 +173,97 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
     }
     */
     
-    public override Task BeforeCardPlayed(CardPlay cardPlay)
+    /*
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         Player player = cardPlay.Card.Owner;
-        
+
         CardType lastPlayedCardType = GetLastPlayedCardType(player, 0);
         CardType cardType = cardPlay.Card.Type;
 
         MainFile.Logger.Info( player.Character + " last played card type " + lastPlayedCardType + ", current played card type " + cardType);
-        
+
         // If this is the first card played this combat (last card type was None), nothing happens
         if (lastPlayedCardType == CardType.None)
         {
-            return Task.CompletedTask;
+            return;
         }
-        
+
         MelodicState melodicState = GetMelodicFlowState(player);
 
-        // If player isn't in Melodic Flow, isn't Beat, and did not play one of Beat's cards, nothing happens 
+        // If player isn't in Melodic Flow, isn't Beat, and did not play one of Beat's cards, nothing happens
         if (melodicState is MelodicState.None
             && player.Character is not Character.BeatCharacterMod
             && cardPlay.Card.Pool is not BeatCharacterModCardPool)
         {
-            return Task.CompletedTask;
+            return;
         }
-        
+
         if (lastPlayedCardType != cardType)
         {
             if (melodicState == MelodicState.Rhythm)
             {
-                GainTempo(player);
+                await GainTempo(player);
             } else if (melodicState is MelodicState.None or MelodicState.Resonance)
             {
-                SetMelodicFlowState(player, MelodicState.Rhythm);
+                await SetMelodicFlowState(player, MelodicState.Rhythm);
             }
         }
         else
         {
             if (melodicState is MelodicState.None or MelodicState.Rhythm)
             {
-                SetMelodicFlowState(player, MelodicState.Resonance);
+                await SetMelodicFlowState(player, MelodicState.Resonance);
             }
         }
-        
-        return Task.CompletedTask;
     }
-
-    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    */
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         Player player = cardPlay.Card.Owner;
 
         MelodicState melodicState = GetMelodicFlowState(player);
         Decimal tempo = GetTempo(player);
         
-        CardType lastPlayedCardType = GetLastPlayedCardType(player, 1);
+        if (melodicState is MelodicState.None
+            && player.Character is not Character.BeatCharacterMod
+            && cardPlay.Card.Pool is not BeatCharacterModCardPool)
+        {
+            return;
+        }
+
+        CardType lastPlayedCardType = player.PlayerCombatState.MelodicFlow().LastPlayedCardType; //GetLastPlayedCardType(player, 1);
         CardType cardType = cardPlay.Card.Type;
         
         if (melodicState is MelodicState.Silence && tempo <= 0M)
         {
             if (lastPlayedCardType != cardType)
             {
-                SetMelodicFlowState(player, MelodicState.Rhythm);
+                await SetMelodicFlowState(player, MelodicState.Rhythm);
             }
             else
             {
-                SetMelodicFlowState(player, MelodicState.Resonance);
+                await SetMelodicFlowState(player, MelodicState.Resonance);
+            }
+        }
+        else if (melodicState is not MelodicState.Silence)
+        {
+            if (lastPlayedCardType != cardType)
+            {
+                if (melodicState == MelodicState.Rhythm)
+                {
+                    await GainTempo(player);
+                } else if (melodicState is MelodicState.None or MelodicState.Resonance)
+                {
+                    await SetMelodicFlowState(player, MelodicState.Rhythm);
+                }
+            }
+            else
+            {
+                if (melodicState is MelodicState.None or MelodicState.Rhythm)
+                {
+                    await SetMelodicFlowState(player, MelodicState.Resonance);
+                }
             }
         }
 
@@ -232,7 +271,5 @@ public class MelodicFlowTracker() : CustomSingletonModel(true, false)
         {
             player.PlayerCombatState.MelodicFlow().LastPlayedCardType = cardType;
         }
-        
-        return Task.CompletedTask;
     }
 }

@@ -3,7 +3,7 @@
   "BEATCHARACTERMOD-STRIKE_BEAT.title": "Strike",
   "BEATCHARACTERMOD-DEFEND_BEAT.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "BEATCHARACTERMOD-DEFEND_BEAT.title": "Defend",
-  "BEATCHARACTERMOD-FIND_YOUR_VOICE.description": "Deal {CalculatedDamage:diff()} damage. Deals additional damage equal to double the amount of [img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img] you have.",
+  "BEATCHARACTERMOD-FIND_YOUR_VOICE.description": "Deal {CalculatedDamage:diff()} damage. Deals additional damage equal to the amount of [img]res://BeatCharacterMod/images/packed/sprite_fonts/tempo_icon.png[/img] you have.",
   "BEATCHARACTERMOD-FIND_YOUR_VOICE.title": "Find Your Voice",
   "BEATCHARACTERMOD-LOSE_YOUR_WAY.description": "Draw {Cards:diff()} {Cards:plural:card|cards}. Enter [gold]Silence[/gold].",
   "BEATCHARACTERMOD-LOSE_YOUR_WAY.title": "Lose Your Way",
@@ -23,5 +23,7 @@
   "BEATCHARACTERMOD-DRUM_RUSH.description": "Shuffle an [gold]Offbeat[/gold] into your [gold]Draw Pile[/gold]. Draw {Cards:diff()} {Cards:plural:card|cards}.\n",
   "BEATCHARACTERMOD-DRUM_RUSH.title": "Drum Rush",
   "BEATCHARACTERMOD-CHARRED_MEMOIR.description": "Enter [gold]Silence[/gold]. Add a [gold]Burn[/gold] to your [gold]Hand[/gold].",
-  "BEATCHARACTERMOD-CHARRED_MEMOIR.title": "Charred Memoir"
+  "BEATCHARACTERMOD-CHARRED_MEMOIR.title": "Charred Memoir",
+  "BEATCHARACTERMOD-DANCE_DELIGHTFUL.description": "Gain {DanceDelightfulPower:diff()} [gold]Strength[/gold] while in [gold]Rhythm[/gold].\nGain {DanceDelightfulPower:diff()} [gold]Dexterity[/gold] while in [gold]Resonance[/gold].",
+  "BEATCHARACTERMOD-DANCE_DELIGHTFUL.title": "Dance Delightful"
 }
